@@ -1,217 +1,563 @@
-<!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth" id="html-root">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfólio | Vitória Santos da Cruz</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="relative overflow-x-hidden">
+  <!doctype html>
+  <html lang="pt-br" class="scroll-smooth" id="html-root">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Portfólio | Vitória Santos da Cruz</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      />
+      <link rel="stylesheet" href="style.css" />
+    </head>
+    <body class="relative overflow-x-hidden">
+      <!-- Particles background (hero) -->
+      <canvas
+        id="particles"
+        class="hidden lg:block fixed inset-0 pointer-events-none"
+      ></canvas>
 
-  <!-- Particles background (hero) -->
-  <canvas id="particles" class="hidden lg:block fixed inset-0 pointer-events-none"></canvas>
+      <!-- Navbar -->
+      <nav
+        class="fixed top-0 left-0 w-full bg-opacity-90 backdrop-blur-lg z-50 transition-all duration-300 shadow-sm"
+        :class="{'bg-white/90': theme === 'light', 'bg-slate-900/90': theme === 'dark'}"
+      >
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex justify-between items-center"
+        >
+          <h1
+            class="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500"
+          >
+            Vitória Santos
+          </h1>
 
-  <!-- Navbar -->
-  <nav class="fixed top-0 left-0 w-full bg-opacity-90 backdrop-blur-lg z-50 transition-all duration-300 shadow-sm"
-       :class="{'bg-white/90': theme === 'light', 'bg-slate-900/90': theme === 'dark'}">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex justify-between items-center">
-      <h1 class="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500">Vitória Santos</h1>
-      
-      <div class="flex items-center space-x-6 sm:space-x-8">
-        <ul class="hidden md:flex space-x-6 lg:space-x-10 font-medium">
-          <li><a href="#sobre" class="hover:text-purple-500 transition">Sobre</a></li>
-          <li><a href="#habilidades" class="hover:text-purple-500 transition">Habilidades</a></li>
-          <li><a href="#projetos" class="hover:text-purple-500 transition">Projetos</a></li>
-          <li><a href="#contato" class="hover:text-purple-500 transition">Contato</a></li>
-        </ul>
+          <div class="flex items-center space-x-6 sm:space-x-8">
+            <ul class="hidden md:flex space-x-6 lg:space-x-10 font-medium">
+              <li>
+                <a href="#sobre" class="hover:text-purple-500 transition"
+                  >Sobre</a
+                >
+              </li>
+              <li>
+                <a href="#habilidades" class="hover:text-purple-500 transition"
+                  >Habilidades</a
+                >
+              </li>
+              <li>
+                <a href="#projetos" class="hover:text-purple-500 transition"
+                  >Projetos</a
+                >
+              </li>
+              <li>
+                <a href="#contato" class="hover:text-purple-500 transition"
+                  >Contato</a
+                >
+              </li>
+            </ul>
 
-        <button id="theme-toggle" class="text-2xl focus:outline-none transition-transform hover:rotate-180">
-          <i class="fas fa-moon" id="moon-icon"></i>
-          <i class="fas fa-sun hidden" id="sun-icon"></i>
-        </button>
+            <button
+              id="theme-toggle"
+              class="text-2xl focus:outline-none transition-transform hover:rotate-180"
+            >
+              <i class="fas fa-moon" id="moon-icon"></i>
+              <i class="fas fa-sun hidden" id="sun-icon"></i>
+            </button>
 
-        <button id="menu-btn" class="md:hidden text-2xl sm:text-3xl focus:outline-none">
-          <i class="fas fa-bars" id="menu-open"></i>
-          <i class="fas fa-times hidden" id="menu-close"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-opacity-95 backdrop-blur-lg shadow-xl">
-      <ul class="flex flex-col items-center py-8 space-y-6 text-lg font-medium">
-        <li><a href="#sobre" class="hover:text-purple-500" onclick="closeMenu()">Sobre</a></li>
-        <li><a href="#habilidades" class="hover:text-purple-500" onclick="closeMenu()">Habilidades</a></li>
-        <li><a href="#projetos" class="hover:text-purple-500" onclick="closeMenu()">Projetos</a></li>
-        <li><a href="#contato" class="hover:text-purple-500" onclick="closeMenu()">Contato</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <section class="min-h-screen flex items-center justify-center pt-20 sm:pt-24 pb-12 relative overflow-hidden gradient-bg">
-    <div class="text-center px-5 sm:px-6 max-w-4xl mx-auto z-10">
-      <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600 mb-4 animate-pulse-slow" data-aos="fade-up">
-        Vitória Santos da Cruz
-      </h2>
-      <p class="text-xl sm:text-2xl md:text-4xl font-light text-purple-700 dark:text-purple-300 mt-3" data-aos="fade-up" data-aos-delay="200">
-        Desenvolvedora Frontend
-      </p>
-      <p class="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-2 sm:px-0" data-aos="fade-up" data-aos-delay="400">
-        Estudante do <strong>4º período de Análise e Desenvolvimento de Sistemas</strong>, apaixonada por criar interfaces bonitas e funcionais. Buscando minha primeira oportunidade de <strong>estágio em Frontend</strong> para aplicar HTML, CSS, JavaScript e Angular na prática!
-      </p>
-      <div class="mt-10 sm:mt-12 flex flex-col sm:flex-row justify-center gap-4 sm:gap-6" data-aos="zoom-in" data-aos-delay="600">
-        <a href="#projetos" class="bg-purple-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-semibold shadow-xl hover:bg-purple-700 hover:scale-105 transition-all duration-300 text-base sm:text-lg">
-          Ver Projetos
-        </a>
-        <a href="#contato" class="border-2 border-purple-500 text-purple-700 dark:text-purple-300 px-8 sm:px-10 py-4 sm:py-5 rounded-full font-semibold hover:bg-purple-500/10 transition-all duration-300 text-base sm:text-lg">
-          Quero estagiar!
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sobre -->
-  <section id="sobre" class="py-16 sm:py-20 lg:py-24">
-    <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
-      <h2 class="text-4xl sm:text-5xl font-bold text-center mb-12 lg:mb-16 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600" data-aos="fade-up">Sobre Mim</h2>
-      
-      <div class="flex flex-col md:flex-row items-center gap-8 lg:gap-12">
-        <div class="relative shrink-0" data-aos="fade-right" data-aos-delay="100">
-          <div class="absolute inset-0 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-full blur-2xl opacity-30 animate-pulse-slow"></div>
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-               alt="Vitória" class="rounded-full w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 object-cover border-4 border-white dark:border-slate-800 shadow-2xl relative z-10 mx-auto md:mx-0">
+            <button
+              id="menu-btn"
+              class="md:hidden text-2xl sm:text-3xl focus:outline-none"
+            >
+              <i class="fas fa-bars" id="menu-open"></i>
+              <i class="fas fa-times hidden" id="menu-close"></i>
+            </button>
+          </div>
         </div>
-        
-        <div class="text-base sm:text-lg leading-relaxed space-y-5 sm:space-y-6 text-center md:text-left" data-aos="fade-left" data-aos-delay="200">
-          <p>Olá! Sou Vitória, estudante do <strong>4º período de Análise e Desenvolvimento de Sistemas</strong> e apaixonada por desenvolvimento frontend.</p>
-          <p>Estou em busca da minha primeira experiência como <strong>estagiária frontend</strong>, onde possa colocar em prática tudo que venho aprendendo na faculdade e nos estudos autônomos: HTML5, CSS3 (amo Tailwind!), JavaScript e Angular.</p>
-          <p>Meus projetos até aqui são pessoais e acadêmicos, mas todos feitos com muito carinho e foco em responsividade, usabilidade e design moderno. Estou super motivada para aprender no dia a dia, contribuir com o time e crescer junto com a empresa!</p>
-          <p>Fora do código: café gelado, cuidar das minhas plantinhas, assistir K-dramas e sonhar com o próximo projeto incrível.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Habilidades -->
-  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-6 p-4 sm:gap-8 max-w-7xl mx-auto">
+        <!-- Mobile menu -->
+        <div
+          id="mobile-menu"
+          class="hidden md:hidden bg-opacity-95 backdrop-blur-lg shadow-xl"
+        >
+          <ul
+            class="flex flex-col items-center py-8 space-y-6 text-lg font-medium"
+          >
+            <li>
+              <a href="#sobre" class="hover:text-purple-500" onclick="closeMenu()"
+                >Sobre</a
+              >
+            </li>
+            <li>
+              <a
+                href="#habilidades"
+                class="hover:text-purple-500"
+                onclick="closeMenu()"
+                >Habilidades</a
+              >
+            </li>
+            <li>
+              <a
+                href="#projetos"
+                class="hover:text-purple-500"
+                onclick="closeMenu()"
+                >Projetos</a
+              >
+            </li>
+            <li>
+              <a
+                href="#contato"
+                class="hover:text-purple-500"
+                onclick="closeMenu()"
+                >Contato</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Hero -->
+      <section
+        class="min-h-screen flex items-center justify-center pt-20 sm:pt-24 pb-12 relative overflow-hidden gradient-bg"
+      >
+        <div class="text-center px-5 sm:px-6 max-w-4xl mx-auto z-10">
+          <h2
+            class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600 mb-4 animate-pulse-slow"
+            data-aos="fade-up"
+          >
+            Vitória Santos da Cruz
+          </h2>
+          <p
+            class="text-xl sm:text-2xl md:text-4xl font-light text-purple-700 dark:text-purple-300 mt-3"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            Desenvolvedora Frontend
+          </p>
+          <p
+            class="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-2 sm:px-0"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            Estudante do
+            <strong>4º período de Análise e Desenvolvimento de Sistemas</strong>,
+            apaixonada por criar interfaces bonitas e funcionais. Buscando minha
+            primeira oportunidade de <strong>estágio em Frontend</strong> para
+            aplicar HTML, CSS, JavaScript e Angular na prática!
+          </p>
+          <div
+            class="mt-10 sm:mt-12 flex flex-col sm:flex-row justify-center gap-4 sm:gap-6"
+            data-aos="zoom-in"
+            data-aos-delay="600"
+          >
+            <a
+              href="#projetos"
+              class="bg-purple-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full font-semibold shadow-xl hover:bg-purple-700 hover:scale-105 transition-all duration-300 text-base sm:text-lg"
+            >
+              Ver Projetos
+            </a>
+            <a
+              href="#contato"
+              class="border-2 border-purple-500 text-purple-700 dark:text-purple-300 px-8 sm:px-10 py-4 sm:py-5 rounded-full font-semibold hover:bg-purple-500/10 transition-all duration-300 text-base sm:text-lg"
+            >
+              Quero estagiar!
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sobre -->
+      <section id="sobre" class="py-16 sm:py-20 lg:py-24">
+        <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+          <h2
+            class="text-4xl sm:text-5xl font-bold text-center mb-12 lg:mb-16 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600"
+            data-aos="fade-up"
+          >
+            Sobre Mim
+          </h2>
+
+          <div class="flex flex-col md:flex-row items-center gap-8 lg:gap-12">
+            <div
+              class="relative shrink-0"
+              data-aos="fade-right"
+              data-aos-delay="100"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-full blur-2xl opacity-30 animate-pulse-slow"
+              ></div>
+              <img
+                src="images/foto.jpeg"
+                alt="Vitória"
+                class="rounded-full w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 object-cover border-4 border-white dark:border-slate-800 shadow-2xl relative z-10 mx-auto md:mx-0"
+              />
+            </div>
+
+            <div
+              class="text-base sm:text-lg leading-relaxed space-y-5 sm:space-y-6 text-center md:text-left"
+              data-aos="fade-left"
+              data-aos-delay="200"
+            >
+              <p>
+                Olá! Sou Vitória, estudante do
+                <strong
+                  >4º período de Análise e Desenvolvimento de Sistemas</strong
+                >
+                e apaixonada por desenvolvimento frontend.
+              </p>
+              <p>
+                Estou em busca da minha primeira experiência como
+                <strong>estagiária frontend</strong>, onde possa colocar em
+                prática tudo que venho aprendendo na faculdade e nos estudos
+                autônomos: HTML5, CSS3 (amo Tailwind!), JavaScript e Angular.
+              </p>
+              <p>
+                Meus projetos até aqui são pessoais e acadêmicos, mas todos feitos
+                com muito carinho e foco em responsividade, usabilidade e design
+                moderno. Estou super motivada para aprender no dia a dia,
+                contribuir com o time e crescer junto com a empresa!
+              </p>
     
-    <!-- HTML -->
-    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl card-hover text-center" data-aos="zoom-in">
-      <i class="fab fa-html5 text-5xl sm:text-6xl text-orange-500 mb-3 sm:mb-4"></i>
-      <p class="font-semibold mt-1 sm:mt-2">HTML</p>
-    </div>
-
-    <!-- CSS -->
-    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl card-hover text-center" data-aos="zoom-in" data-aos-delay="100">
-      <i class="fab fa-css3-alt text-5xl sm:text-6xl text-blue-500 mb-3 sm:mb-4"></i>
-      <p class="font-semibold mt-1 sm:mt-2">CSS</p>
-    </div>
-
-    <!-- JavaScript -->
-    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl card-hover text-center" data-aos="zoom-in" data-aos-delay="200">
-      <i class="fab fa-js-square text-5xl sm:text-6xl text-yellow-400 mb-3 sm:mb-4"></i>
-      <p class="font-semibold mt-1 sm:mt-2">JavaScript</p>
-    </div>
-
-    <!-- Tailwind CSS – usando fa-code com cor cyan (melhor opção sem ícone oficial) -->
-    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl card-hover text-center" data-aos="zoom-in" data-aos-delay="300">
-      <i class="fas fa-code text-5xl sm:text-6xl text-cyan-500 mb-3 sm:mb-4"></i>
-      <p class="font-semibold mt-1 sm:mt-2">Tailwind CSS</p>
-    </div>
-
-    <!-- Git & GitHub – ícone do GitHub -->
-    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl card-hover text-center" data-aos="zoom-in" data-aos-delay="400">
-      <i class="fab fa-github text-5xl sm:text-6xl text-gray-800 dark:text-gray-200 mb-3 sm:mb-4"></i>
-      <p class="font-semibold mt-1 sm:mt-2">Git & GitHub</p>
-    </div>
-
-    <!-- Angular (estudando) -->
-    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl card-hover text-center relative" data-aos="zoom-in" data-aos-delay="500">
-      <i class="fab fa-angular text-5xl sm:text-6xl text-red-600 mb-3 sm:mb-4"></i>
-      <p class="font-semibold mt-1 sm:mt-2">Angular</p>
-      <span class="absolute -top-2 bg-purple-600 text-white text-xs px-2 py-1 rounded-full font-medium shadow">Estudando</span>
-    </div>
-
-    <!-- TypeScript (estudando) -->
-    <div class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl card-hover text-center relative" data-aos="zoom-in" data-aos-delay="600">
-      <i class="fas fa-code text-5xl sm:text-6xl text-blue-500 mb-3 sm:mb-4"></i> <!-- ou use fas fa-file-code -->
-      <p class="font-semibold mt-1 sm:mt-2">TypeScript</p>
-      <span class="absolute -top-2 bg-purple-600 text-white text-xs px-2 py-1 rounded-full font-medium shadow">Estudando</span>
-    </div>
-
-  </div>
-
-  <!-- Projetos -->
-  <section id="projetos" class="py-16 sm:py-20 lg:py-24">
-    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-      <h2 class="text-4xl sm:text-5xl font-bold text-center mb-12 lg:mb-16 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600" data-aos="fade-up">Projetos (Acadêmicos e Pessoais)</h2>
-      
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-        <div class="relative overflow-hidden rounded-2xl shadow-2xl card-hover bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-800 dark:to-slate-900" data-aos="fade-up">
-          <div class="h-48 sm:h-56 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800')"></div>
-          <div class="p-6 sm:p-8">
-            <h3 class="text-xl sm:text-2xl font-bold mb-3">E-commerce Floral</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-5 sm:mb-6">Projeto pessoal com Angular + Tailwind – carrinho, listagem e design responsivo (em desenvolvimento).</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 sm:px-4 py-1 bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 rounded-full text-sm">Angular</span>
-              <span class="px-3 sm:px-4 py-1 bg-pink-100 dark:bg-pink-900/40 text-pink-700 dark:text-pink-300 rounded-full text-sm">Tailwind</span>
             </div>
           </div>
         </div>
-        <!-- outros projetos -->
+      </section>
+
+      <!-- Habilidades -->
+      <h2
+        class="text-4xl sm:text-5xl font-bold text-center mb-10 lg:mb-16 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600"
+        data-aos="fade-up"
+      >
+        Habilidades
+      </h2>
+
+      <div
+        class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-6 p-4 sm:gap-8 max-w-7xl mx-auto"
+      >
+        <!-- HTML -->
+        <div
+          class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl card-hover text-center"
+          data-aos="zoom-in"
+        >
+          <i
+            class="fab fa-html5 text-5xl sm:text-6xl text-orange-500 mb-3 sm:mb-4"
+          ></i>
+          <p class="font-semibold mt-1 sm:mt-2">HTML</p>
+        </div>
+
+        <!-- CSS -->
+        <div
+          class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl card-hover text-center"
+          data-aos="zoom-in"
+          data-aos-delay="100"
+        >
+          <i
+            class="fab fa-css3-alt text-5xl sm:text-6xl text-blue-500 mb-3 sm:mb-4"
+          ></i>
+          <p class="font-semibold mt-1 sm:mt-2">CSS</p>
+        </div>
+
+        <!-- JavaScript -->
+        <div
+          class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl card-hover text-center"
+          data-aos="zoom-in"
+          data-aos-delay="200"
+        >
+          <i
+            class="fab fa-js-square text-5xl sm:text-6xl text-yellow-400 mb-3 sm:mb-4"
+          ></i>
+          <p class="font-semibold mt-1 sm:mt-2">JavaScript</p>
+        </div>
+
+        <!-- Tailwind CSS – usando fa-code com cor cyan (melhor opção sem ícone oficial) -->
+        <div
+          class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl card-hover text-center"
+          data-aos="zoom-in"
+          data-aos-delay="300"
+        >
+          <i
+            class="fas fa-code text-5xl sm:text-6xl text-cyan-500 mb-3 sm:mb-4"
+          ></i>
+          <p class="font-semibold mt-1 sm:mt-2">Tailwind CSS</p>
+        </div>
+
+        <!-- Git & GitHub – ícone do GitHub -->
+        <div
+          class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl card-hover text-center"
+          data-aos="zoom-in"
+          data-aos-delay="400"
+        >
+          <i
+            class="fab fa-github text-5xl sm:text-6xl text-gray-800 dark:text-gray-200 mb-3 sm:mb-4"
+          ></i>
+          <p class="font-semibold mt-1 sm:mt-2">Git & GitHub</p>
+        </div>
+
+        <!-- Angular (estudando) -->
+        <div
+          class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl card-hover text-center relative"
+          data-aos="zoom-in"
+          data-aos-delay="500"
+        >
+          <i
+            class="fab fa-angular text-5xl sm:text-6xl text-red-600 mb-3 sm:mb-4"
+          ></i>
+          <p class="font-semibold mt-1 sm:mt-2">Angular</p>
+          <span
+            class="absolute -top-2 bg-purple-600 text-white text-xs px-2 py-1 rounded-full font-medium shadow"
+            >Estudando</span
+          >
+        </div>
+
+        <!-- TypeScript (estudando) -->
+        <div
+          class="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl shadow-xl card-hover text-center relative"
+          data-aos="zoom-in"
+          data-aos-delay="600"
+        >
+          <i
+            class="fas fa-code text-5xl sm:text-6xl text-blue-500 mb-3 sm:mb-4"
+          ></i>
+          <!-- ou use fas fa-file-code -->
+          <p class="font-semibold mt-1 sm:mt-2">TypeScript</p>
+          <span
+            class="absolute -top-2 bg-purple-600 text-white text-xs px-2 py-1 rounded-full font-medium shadow"
+            >Estudando</span
+          >
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Contato (igual, só padding e botão ajustados) -->
-  <section id="contato" class="py-16 sm:py-20 lg:py-24 gradient-bg">
-    <div class="max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-4xl sm:text-5xl font-bold mb-6 sm:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600" data-aos="fade-up">Vamos trabalhar juntos?</h2>
-      <p class="text-lg sm:text-xl mb-10 sm:mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-        Estou super animada para começar meu estágio em frontend! Se você tem vaga de estágio ou quer conversar sobre oportunidades, me chama!
-      </p>
-      
- <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 flex-wrap" data-aos="zoom-in" data-aos-delay="300">
-  
-  <!-- Email -->
-  <a href="mailto:vitoria.santos@email.com" 
-     class="bg-white dark:bg-slate-800 px-8 sm:px-10 py-4 sm:py-5 rounded-full shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-3 text-base sm:text-lg">
-    <i class="fas fa-envelope text-xl text-purple-600"></i> 
-    Email
-  </a>
+      <br /><br /><br />
 
-  <!-- WhatsApp -->
-  <a href="https://wa.me/55SEUNUMERO?text=Ol%C3%A1%20Vit%C3%B3ria%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20oportunidades%20de%20est%C3%A1gio!" 
-     target="_blank" 
-     class="bg-white dark:bg-slate-800 px-8 sm:px-10 py-4 sm:py-5 rounded-full shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-3 text-base sm:text-lg">
-    <i class="fab fa-whatsapp text-xl text-green-500"></i> 
-    WhatsApp
-  </a>
+      <!-- Projetos -->
+      <h2
+        class="text-4xl sm:text-5xl font-bold text-center mb-16 pb-2 lg:mb-16 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600"
+        data-aos="fade-up"
+      >
+        Projetos
+      </h2>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 p-4 m-auto max-w-7xl"
+      >
+        <!-- 1. Verificador de Idade -->
+        <a
+          href="https://vitoriacruz79.github.io/verificadorDeIdade"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block relative overflow-hidden rounded-2xl shadow-2xl card-hover bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-800 dark:to-slate-900 hover:scale-[1.02] transition-transform"
+          data-aos="fade-up"
+        >
+          <div
+            class="h-48 sm:h-56 bg-cover bg-center"
+            style="background-image: url(&quot;images/1.png&quot;)"
+          ></div>
+          <div class="p-6 sm:p-8">
+            <h3 class="text-xl sm:text-2xl font-bold mb-3">
+              Verificador de Idade
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-5 sm:mb-6">
+              Calcula a idade a partir do ano de nascimento e sexo informado,
+              mostrando foto e mensagem personalizada.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 sm:px-4 py-1 bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 rounded-full text-sm"
+                >HTML</span
+              >
+              <span
+                class="px-3 sm:px-4 py-1 bg-pink-100 dark:bg-pink-900/40 text-pink-700 dark:text-pink-300 rounded-full text-sm"
+                >CSS</span
+              >
+              <span
+                class="px-3 sm:px-4 py-1 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 rounded-full text-sm"
+                >JavaScript</span
+              >
+            </div>
+          </div>
+        </a>
 
-  <!-- LinkedIn -->
-  <a href="https://www.linkedin.com/in/vitoriasantosdac" 
-     target="_blank" 
-     class="bg-white dark:bg-slate-800 px-8 sm:px-10 py-4 sm:py-5 rounded-full shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-3 text-base sm:text-lg">
-    <i class="fab fa-linkedin text-xl text-blue-600"></i> 
-    LinkedIn
-  </a>
+        <!-- 2. Portfólio (se quiser linkar para si mesmo, pode deixar ou remover o href) -->
+        <a
+          href="https://vitoriacruz79.github.io/Portifolio"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block relative overflow-hidden rounded-2xl shadow-2xl card-hover bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-800 dark:to-slate-900 hover:scale-[1.02] transition-transform"
+          data-aos="fade-up"
+        >
+          <div
+            class="h-48 sm:h-56 bg-cover bg-center"
+            style="background-image: url(&quot;images/2.png&quot;)"
+          ></div>
+          <div class="p-6 sm:p-8">
+            <h3 class="text-xl sm:text-2xl font-bold mb-3">Portfólio Pessoal</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-5 sm:mb-6">
+              Meu site portfólio atual com design moderno, seções interativas e
+              apresentação de projetos (feito com carinho ♡).
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 sm:px-4 py-1 bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 rounded-full text-sm"
+                >HTML</span
+              >
+              <span
+                class="px-3 sm:px-4 py-1 bg-pink-100 dark:bg-pink-900/40 text-pink-700 dark:text-pink-300 rounded-full text-sm"
+                >Tailwind CSS</span
+              >
+              <span
+                class="px-3 sm:px-4 py-1 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 rounded-full text-sm"
+                >JavaScript</span
+              >
+            </div>
+          </div>
+        </a>
 
-</div>
-      <p class="mt-10 sm:mt-12 text-sm sm:text-base">Feito com 💜 Vitória Santos</p>
-    </div>
-  </section>
+        <!-- 3. Previsão do Tempo -->
+        <a
+          href="https://vitoriacruz79.github.io/previsao-do-tempo"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block relative overflow-hidden rounded-2xl shadow-2xl card-hover bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-800 dark:to-slate-900 hover:scale-[1.02] transition-transform"
+          data-aos="fade-up"
+        >
+          <div
+            class="h-48 sm:h-56 bg-cover bg-center"
+            style="background-image: url(&quot;images/3.png&quot;)"
+          ></div>
+          <div class="p-6 sm:p-8">
+            <h3 class="text-xl sm:text-2xl font-bold mb-3">Previsão do Tempo</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-5 sm:mb-6">
+              App que consulta API de clima e mostra temperatura, umidade, vento e
+              condição atual de qualquer cidade em tempo real.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 sm:px-4 py-1 bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 rounded-full text-sm"
+                >HTML</span
+              >
+              <span
+                class="px-3 sm:px-4 py-1 bg-pink-100 dark:bg-pink-900/40 text-pink-700 dark:text-pink-300 rounded-full text-sm"
+                >CSS</span
+              >
+              <span
+                class="px-3 sm:px-4 py-1 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 rounded-full text-sm"
+                >JavaScript</span
+              >
+              <span
+                class="px-3 sm:px-4 py-1 bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300 rounded-full text-sm"
+                >API</span
+              >
+            </div>
+          </div>
+        </a>
 
-  <!-- Back to top -->
-  <button id="back-to-top" class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 bg-purple-600 text-white w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-lg flex items-center justify-center text-xl sm:text-2xl opacity-0 invisible transition-all duration-300 hover:bg-purple-700 z-50">
-    <i class="fas fa-arrow-up"></i>
-  </button>
+        <!-- 4. Lista de Tarefas & Sonhos -->
+        <a
+          href="https://vitoriacruz79.github.io/to-do-list"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block relative overflow-hidden rounded-2xl shadow-2xl card-hover bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-800 dark:to-slate-900 hover:scale-[1.02] transition-transform"
+          data-aos="fade-up"
+        >
+          <div
+            class="h-48 sm:h-56 bg-cover bg-center"
+            style="background-image: url(&quot;images/4.png&quot;)"
+          ></div>
+          <div class="p-6 sm:p-8">
+            <h3 class="text-xl sm:text-2xl font-bold mb-3">
+              Lista de Tarefas & Sonhos
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-5 sm:mb-6">
+              To-do list fofa para organizar tarefas e sonhos do dia, com adição,
+              marcação e motivaçãozinha extra 🌸.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 sm:px-4 py-1 bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 rounded-full text-sm"
+                >HTML</span
+              >
+              <span
+                class="px-3 sm:px-4 py-1 bg-pink-100 dark:bg-pink-900/40 text-pink-700 dark:text-pink-300 rounded-full text-sm"
+                >CSS</span
+              >
+              <span
+                class="px-3 sm:px-4 py-1 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 rounded-full text-sm"
+                >JavaScript</span
+              >
+            </div>
+          </div>
+        </a>
+      </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+      <!-- Contato (igual, só padding e botão ajustados) -->
+      <section id="contato" class="py-16 sm:py-20 lg:py-24 gradient-bg">
+        <div class="max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
+          <h2
+            class="text-4xl sm:text-5xl font-bold mb-6 sm:mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600"
+            data-aos="fade-up"
+          >
+            Vamos trabalhar juntos?
+          </h2>
+          <p
+            class="text-lg sm:text-xl mb-10 sm:mb-12 max-w-2xl mx-auto"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            Estou super animada para começar meu estágio em frontend! Se você tem
+            vaga de estágio ou quer conversar sobre oportunidades, me chama!
+          </p>
 
-  <script src="script.js"></script>
-</body>
-</html>
+          <div
+            class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 flex-wrap"
+            data-aos="zoom-in"
+            data-aos-delay="300"
+          >
+            <!-- Email -->
+            <a
+              href="mailto:vitoria.santos@email.com"
+              class="bg-white dark:bg-slate-800 px-8 sm:px-10 py-4 sm:py-5 rounded-full shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-3 text-base sm:text-lg"
+            >
+              <i class="fas fa-envelope text-xl text-purple-600"></i>
+              Email
+            </a>
+
+            <!-- WhatsApp -->
+            <a
+              href="https://wa.me/55SEUNUMERO?text=Ol%C3%A1%20Vit%C3%B3ria%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20oportunidades%20de%20est%C3%A1gio!"
+              target="_blank"
+              class="bg-white dark:bg-slate-800 px-8 sm:px-10 py-4 sm:py-5 rounded-full shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-3 text-base sm:text-lg"
+            >
+              <i class="fab fa-whatsapp text-xl text-green-500"></i>
+              WhatsApp
+            </a>
+
+            <!-- LinkedIn -->
+            <a
+              href="https://www.linkedin.com/in/vitoriasantosdac"
+              target="_blank"
+              class="bg-white dark:bg-slate-800 px-8 sm:px-10 py-4 sm:py-5 rounded-full shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-3 text-base sm:text-lg"
+            >
+              <i class="fab fa-linkedin text-xl text-blue-600"></i>
+              LinkedIn
+            </a>
+          </div>
+          <p class="mt-10 sm:mt-12 text-sm sm:text-base">
+            Feito com 💜 Vitória Santos
+          </p>
+        </div>
+      </section>
+
+      <!-- Back to top -->
+      <button
+        id="back-to-top"
+        class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 bg-purple-600 text-white w-12 h-12 sm:w-14 sm:h-14 rounded-full shadow-lg flex items-center justify-center text-xl sm:text-2xl opacity-0 invisible transition-all duration-300 hover:bg-purple-700 z-50"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+      <script src="script.js"></script>
+    </body>
+  </html>
